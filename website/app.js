@@ -8,12 +8,12 @@ let btn = document.getElementById('generate');
 /* Function called by event listener */
 btn.addEventListener('click', () => {
   let zipCode = document.getElementById('zip').value;
-  let url = `http://api.openweathermap.org/data/2.5/forecast?id=${zipCode}&appid=${apiKey}`;
+  let url = `http://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${apiKey}`;
   // Retrieve data from openWeatherApi
   weatherData(url)
   .then(data => {
-    let temp = data.list[0].main.temp;
-    let date = data.list[0].dt_txt;
+    let temp = data.main.temp;
+    let date = new Date(data.dt * 1000);
     let feelings = document.getElementById("feelings").value;
 
     // Post data to the backend
